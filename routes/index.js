@@ -23,10 +23,6 @@ router.post('/login_user', function (req, res, next) {
         if (err) {
             res.status(500).send('Unable to verify. Please try again.');
         }
-        if (user) {
-            console.log('%s %s is a %s.', user.username, user.password, user.email)
-            console.log(user._id);
-        }
         res.status(200).send(user);
     })
 });
