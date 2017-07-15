@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -48,10 +50,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/fieldmanagement');
-mongoose.connection.once('connected', function() {
-    console.log("Connected to database")
-});
+// mongoose.Promise = global.Promise;
+// mongoose.connect('mongodb://localhost/fieldmanagement');
+// mongoose.connection.once('connected', function() {
+//     console.log("Connected to database")
+// });
 
 module.exports = app;
