@@ -1,5 +1,7 @@
 var fieldManagementModule = angular.module("fieldManagement", ['ngResource', 'ui.router']);
 
+//TODO redirection logic to be added here
+
 fieldManagementModule.controller("MainController", function ($scope, $http, $state) {
     $state.go("login");
 
