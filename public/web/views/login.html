@@ -1,0 +1,20 @@
+<div class="login-page">
+    <div class="form">
+        <form name="registrationForm" class="register-form">
+            <input type="text" placeholder="username" ng-model="userName" required>
+            <input type="password" placeholder="password" ng-model="password" required>
+            <input type="text" placeholder="email address" ng-model="email" required>
+            <button ng-disabled="registrationForm.$invalid" ng-click="app.registerUser(userName, password, email)">create</button>
+            <p class="message">Already registered?<a ng-click="animateForm()" href>Sign In</a></p>
+        </form>
+        <form name="loginForm" class="login-form">
+            <input type="text" placeholder="username" ng-model="user_name" required>
+            <input type="password" placeholder="password" ng-model="pass_word" required>
+            <button ng-disabled="loginForm.$invalid" ng-click="verifyUser(user_name, pass_word)">login</button>
+            <p class="message">Not registered?<a ng-click="animateForm()" href>Create an account</a></p>
+        </form>
+        <div ng-if="isLoginSuccessful" class="text-danger">
+            Invalid username or password
+        </div>
+    </div>
+</div>
