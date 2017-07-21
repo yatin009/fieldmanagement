@@ -1,1 +1,2 @@
 pm2 restart all
+pm2 logs --lines 100
