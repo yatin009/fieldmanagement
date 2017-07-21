@@ -8,7 +8,7 @@
     "ip": "127.0.0.1"
   },
   "scripts": {
-    "install": "[ \"$NODE_ENV\" != production ] && sudo npm i -g pm2",
+    "install": "if test \"$NODE_ENV\" != \"production\" ; then sudo npm i -g pm2 ; fi",
     "start": "pm2 start ./bin/www --node-args \"--max_old_space_size=500\"",
     "stop": "pm2 stop all",
     "restart": "pm2 restart all"

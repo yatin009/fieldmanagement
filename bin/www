@@ -18,11 +18,7 @@ app.use(onError);
  * Listen on provided ip and port.
  */
 let server = app.listen(port, ip, function() {
-    let addr = server.address();
-    let bind = typeof addr === 'string'
-      ? 'pipe ' + addr
-      : 'port ' + addr.port;
-    console.log('fieldmanagement:server listening on ' + bind);
+    console.log(`fieldmanagement:server listening on ${ip}:${port}`);
 });
 
 /**

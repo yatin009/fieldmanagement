@@ -31,16 +31,16 @@ if (environment == 'production') {
 
     app.use(function(req, res, next) {
 
-        if (!req.secure) {
+        let fullUrl = url.format({
+            protocol: req.protocol,
+            host: req.get('host'),
+            pathname: req.originalUrl
+        });
 
-            let fullUrl = url.format({
-                protocol: req.protocol,
-                host: req.get('host'),
-                pathname: req.originalUrl
-            });
-
-            res.redirect(fullUrl(req).replace('http:', 'https:'));
+        if (fullUrl.indexOf('http:') != -1) {
+            res.redirect(fullUrl.replace('http:', 'https:'));
         }
+        next()
     });
 
 }
@@ -58,7 +58,7 @@ app.set('view engine', 'pug');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
@@ -74,7 +74,7 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = environment === 'development' ? err : {};
@@ -133,15 +133,14 @@ mongoose.connection.once('connected', function() {
         unset: 'destroy',
         cookie: {
             secure: false,
-            httpOnly: false,
+            httpOnly: true,
             //expires: new Date(Date.now() + 30 * 60 * 1000), // 30 mins
             maxAge: 30 * 60 * 1000 // 30 mins
         }
     }
 
-    if (process.env.IS_SECURE === '1') {
+    if (environment == 'production') {
         sess.cookie.secure = true; // serve secure cookies
-        sess.cookie.httpOnly = true;
     }
 
     app.use(session(sess));
