@@ -1,19 +1,30 @@
 {
   "name": "fieldmanagement",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
+  "main": "./bin/www",
+  "config": {
+    "port": 8080,
+    "ip": "0.0.0.0"
+  },
   "scripts": {
-    "start": "node ./bin/www"
+    "install": "sudo npm i -g pm2 && sudo npm i -g bower && bower install",
+    "start": "pm2 start ./bin/www --node-args \"--max_old_space_size=500\"",
+    "stop": "pm2 stop all",
+    "restart": "pm2 restart all"
   },
   "dependencies": {
-    "body-parser": "~1.17.1",
-    "cookie-parser": "~1.4.3",
+    "body-parser": "^1.17.2",
+    "bower": "^1.8.0",
+    "compression": "^1.7.0",
     "cors": "^2.8.4",
-    "debug": "~2.6.3",
-    "express": "~4.15.2",
-    "jade": "~1.11.0",
-    "mongoose": "^4.11.1",
-    "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2"
+    "debug": "^2.6.8",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "helmet": "^3.6.1",
+    "mongoose": "^4.11.3",
+    "morgan": "^1.8.2",
+    "pug": "^2.0.0-rc.2",
+    "serve-favicon": "^2.4.3"
   }
 }

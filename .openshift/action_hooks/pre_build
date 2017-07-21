@@ -1,0 +1,3 @@
+export PM2_HOME=/var/lib/openshift/597128997628e1de9300000c/app-root/data/pm2
+
+npm i -g pm2
