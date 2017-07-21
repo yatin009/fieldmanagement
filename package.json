@@ -4,8 +4,8 @@
   "private": true,
   "main": "./bin/www",
   "config": {
-    "port": 8080,
-    "ip": "0.0.0.0"
+    "port": 3000,
+    "ip": "127.0.0.1"
   },
   "scripts": {
     "install": "sudo npm i -g pm2 && sudo npm i -g bower && bower install",
